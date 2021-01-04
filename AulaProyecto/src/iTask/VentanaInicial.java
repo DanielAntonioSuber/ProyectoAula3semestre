@@ -8,10 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class VentaInicial extends VentanaPadre implements ActionListener {
+public class VentanaInicial extends VentanaPadre implements ActionListener {
 
     private JButton RegistrarJButton;
     private JButton InicioSesionJButton;
@@ -22,7 +21,7 @@ public class VentaInicial extends VentanaPadre implements ActionListener {
     private JLabel pregunta1;
     private JLabel pregunta2;
 
-    public VentaInicial() {
+    public VentanaInicial() {
         super();
         componentes();
     }
@@ -96,8 +95,9 @@ public class VentaInicial extends VentanaPadre implements ActionListener {
                 }
             });
         }
-        else 
-            System.out.println("hola xd");
+        else if (e.getActionCommand().equals("Iniciar Sesión")) {
+            
+        }
     }
     
 }
