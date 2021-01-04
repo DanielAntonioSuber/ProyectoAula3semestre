@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class VentanaRegistro extends JFrame implements ActionListener,
+public class VentanaRegistro extends VentanaPadre implements ActionListener,
         KeyListener {
 
     private JTextField campoDeTextos[];
@@ -18,20 +18,8 @@ public class VentanaRegistro extends JFrame implements ActionListener,
     private JLabel JLabels[];
 
     public VentanaRegistro() {
-        configuracionVentana();
+        super();
         componetes();
-    }
-
-    private void configuracionVentana() {
-        setLayout(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
-        setSize(640, 480);
-        setLocationRelativeTo(null);
-        setTitle("iTask");
-        this.setContentPane(new Fondo());
-        getContentPane().setLayout(null);
-
     }
 
     private void componetes() {

@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class VentaInicial extends JFrame implements ActionListener {
+public class VentaInicial extends VentanaPadre implements ActionListener {
 
     private JButton RegistrarJButton;
     private JButton InicioSesionJButton;
@@ -23,22 +23,8 @@ public class VentaInicial extends JFrame implements ActionListener {
     private JLabel pregunta2;
 
     public VentaInicial() {
-        configVentana();
+        super();
         componentes();
-    }
-
-    private void configVentana() {
-        setLayout(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
-        setSize(640, 480);
-        setLocationRelativeTo(null);
-        ImageIcon logo = new ImageIcon(getClass().getResource("/Imagenes/Logo_iTask.png"));
-        setIconImage(logo.getImage());
-        setTitle("iTask");
-        this.setContentPane(new Fondo());
-        getContentPane().setLayout(null);
-
     }
 
     private void componentes() {
