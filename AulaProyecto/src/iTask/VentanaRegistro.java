@@ -125,7 +125,7 @@ public class VentanaRegistro extends VentanaPadre implements ActionListener {
             combos[2].addItem(i);
         }
         botonRegistrar = new JButton("Registrar");
-        botonRegistrar.setBounds(80, 380, 150, 40);
+        botonRegistrar.setBounds(410, 380, 150, 40);
         botonRegistrar.setBackground(new Color(250, 250, 250));
         botonRegistrar.setBackground(new Color(250, 250, 250));
         botonRegistrar.setFont(new Font("Arial Black", 0, 14));
@@ -133,7 +133,7 @@ public class VentanaRegistro extends VentanaPadre implements ActionListener {
         add(botonRegistrar);
 
         botonRegresar = new JButton("Regresar");
-        botonRegresar.setBounds(410, 380, 150, 40);
+        botonRegresar.setBounds(80, 380, 150, 40);
         botonRegresar.setBackground(new Color(250, 250, 250));
         botonRegresar.setBackground(new Color(250, 250, 250));
         botonRegresar.setFont(new Font("Arial Black", 0, 14));
