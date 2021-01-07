@@ -5,13 +5,17 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Calendar;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class VentanaRegistro extends VentanaPadre implements ActionListener {
+public class VentanaRegistro extends VentanaPadre implements ActionListener,
+        KeyListener {
 
     private JTextField campoDeTextos[];
     private JLabel textoJLabel;
@@ -27,7 +31,7 @@ public class VentanaRegistro extends VentanaPadre implements ActionListener {
 
     private void componetes() {
         campoDeTextos = new JTextField[4];
-        jLabels = new JLabel[9];
+        jLabels = new JLabel[5];
         combos = new JComboBox[3];
         Calendar fecha = Calendar.getInstance();
         int annio = fecha.get(Calendar.YEAR);
@@ -38,7 +42,7 @@ public class VentanaRegistro extends VentanaPadre implements ActionListener {
         String textos[] = {"Nombre(s)", "Apellido(s)", "Nombre de usuario",
             "Contraseña", "Fecha de nacimiento"};
         String meses[] = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
-             "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+            "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
 
         //texto 
         textoJLabel = new JLabel("Crea una cuenta nueva");
@@ -89,6 +93,7 @@ public class VentanaRegistro extends VentanaPadre implements ActionListener {
             campoDeTextos[i].setBounds(80, y, 480, 30);
             campoDeTextos[i].setHorizontalAlignment(JTextField.CENTER);
             campoDeTextos[i].setFont(new Font("Arial", 0, 18));
+            campoDeTextos[i].addKeyListener(this);
             add(campoDeTextos[i]);
 
             y += 65;
@@ -124,9 +129,9 @@ public class VentanaRegistro extends VentanaPadre implements ActionListener {
         for (int i = annio; i > (annio - 120); i--) {
             combos[2].addItem(i);
         }
+
         botonRegistrar = new JButton("Registrar");
         botonRegistrar.setBounds(410, 380, 150, 40);
-        botonRegistrar.setBackground(new Color(250, 250, 250));
         botonRegistrar.setBackground(new Color(250, 250, 250));
         botonRegistrar.setFont(new Font("Arial Black", 0, 14));
         botonRegistrar.addActionListener(this);
@@ -134,7 +139,6 @@ public class VentanaRegistro extends VentanaPadre implements ActionListener {
 
         botonRegresar = new JButton("Regresar");
         botonRegresar.setBounds(80, 380, 150, 40);
-        botonRegresar.setBackground(new Color(250, 250, 250));
         botonRegresar.setBackground(new Color(250, 250, 250));
         botonRegresar.setFont(new Font("Arial Black", 0, 14));
         botonRegresar.addActionListener(this);
@@ -153,8 +157,74 @@ public class VentanaRegistro extends VentanaPadre implements ActionListener {
                 }
             });
         } else if (e.getActionCommand().equals("Registrar")) {
-
+            accionRegistrar();
         }
+
     }
 
+    public void accionRegistrar() {
+        boolean verificado = true;
+
+        String nombre = campoDeTextos[0].getText();
+        String apellidos = campoDeTextos[1].getText();
+        String usuario = campoDeTextos[2].getText();
+        String contrasennia = campoDeTextos[3].getText();
+        String fechaNacimiento[] = new String[3];
+        for (int i = 0; i < 3; i++) {
+            fechaNacimiento[i] = combos[i].getSelectedItem().toString();
+        }
+
+        if (nombre.equals(" ") || nombre.equals("") || nombre.isEmpty()) {
+            verificado = false;
+        }
+
+        if (apellidos.equals(" ") || apellidos.equals("") || nombre.isEmpty()) {
+            verificado = false;
+        }
+        if (usuario.isEmpty() || contrasennia.isEmpty()) {
+            verificado = false;
+        }
+
+        if (combos[0].getSelectedItem().equals("Día")) {
+            verificado = false;
+        }
+
+        if (combos[1].getSelectedItem().equals("Mes")) {
+            verificado = false;
+        }
+
+        if (combos[2].getSelectedItem().equals("Año")) {
+            verificado = false;
+        }
+
+        if (verificado) {
+            JOptionPane.showMessageDialog(this, "Registrado");
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Llena todos los campos correctamente");
+        }
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent ke) {
+        String cadena = " ";
+        if (ke.getSource() == campoDeTextos[3] || ke.getSource() == campoDeTextos[2]) {
+            char car = ke.getKeyChar();
+            if (cadena.contains(String.valueOf(car))) {
+                ke.consume();
+            }
+        }
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent ke) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent ke) {
+
+    }
 }

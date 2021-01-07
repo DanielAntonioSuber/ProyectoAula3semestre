@@ -25,7 +25,7 @@ public class VentanaPadre extends JFrame{
         ImageIcon logo = new ImageIcon(getClass().getResource("/Imagenes/Logo_iTask.png"));
         setIconImage(logo.getImage());//colocamos el icono de la ventana
         setTitle("iTask");//definimos el titulo de la ventana
-        this.setContentPane(new Fondo());//colocamos nuestro fondo
+        setContentPane(new Fondo());//colocamos nuestro fondo
         getContentPane().setLayout(null);
     }
 }

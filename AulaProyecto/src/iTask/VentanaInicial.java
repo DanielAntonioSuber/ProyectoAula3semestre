@@ -35,22 +35,23 @@ public class VentanaInicial extends VentanaPadre implements ActionListener {
         add(saludoJLabel);
 
         //colocamos el logo
-        ImageIcon logo = new ImageIcon(getClass().getResource("/Imagenes/Logo_iTask.png"));
+        ImageIcon logo = new ImageIcon(getClass().getResource("/Imagenes/Logo_iTask.png"));//creamos una imagen de tipo ImageIcon
         logoJLabel = new JLabel();
+        //colocamos una imagen en el label rescabilizando su tamaño
         logoJLabel.setIcon(new ImageIcon(logo.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
         logoJLabel.setBounds(270, 80, 100, 100);
         add(logoJLabel);
-        
+
         iTask = new JLabel("iTask");
         iTask.setBounds(298, 190, 44, 22);
-        iTask.setForeground(Color.white);
-        iTask.setFont(new Font("Arial", 0, 18));
+        iTask.setForeground(Color.white);//color del texto blanco
+        iTask.setFont(new Font("Arial", Font.PLAIN, 18));//tipo de fuente
         add(iTask);
         //texto
         sloganJLabel = new JLabel("\"Controla tu tiempo\"");
         sloganJLabel.setBounds(223, 250, 194, 40);
         sloganJLabel.setForeground(Color.white);
-        sloganJLabel.setFont(new Font("Arial", 1, 20));
+        sloganJLabel.setFont(new Font("Arial", Font.BOLD, 20));
         add(sloganJLabel);
 
         //texto
@@ -88,16 +89,21 @@ public class VentanaInicial extends VentanaPadre implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getActionCommand().equals("Registrarse")) {
+            //ocultamos esta ventana y abrimos la ventana registro
             dispose();
             EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new VentanaRegistro().setVisible(true);
                 }
             });
-        }
-        else if (e.getActionCommand().equals("Iniciar Sesión")) {
-            
+        } else if (e.getActionCommand().equals("Iniciar Sesión")) {
+            dispose();
+            EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new VentanaIniciarSesion().setVisible(true);
+                }
+            });
         }
     }
-    
+
 }
