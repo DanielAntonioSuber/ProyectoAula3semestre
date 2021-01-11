@@ -198,10 +198,30 @@ public class VentanaRegistro extends VentanaPadre implements ActionListener,
         }
 
         if (verificado) {
-            JOptionPane.showMessageDialog(this, "Registrado");
+            ListaUsuario lista = new ListaUsuario();
+            Usuario user = new Usuario();
+            
+            user.setNombre(nombre);
+            user.setNombreUsuario(usuario);
+            user.setApellidos(apellidos);
+            user.setContrasennia(contrasennia);
+            
+            int pos = lista.traePosicion(usuario);
+            // si el usuario no existe hacemos esto
+            if (pos == -1) {
+                lista.agregarUsuario(user);
+                JOptionPane.showMessageDialog(this, "Registrado");
+                lista.guardar();
+            }
+            else
+                JOptionPane.showMessageDialog(this, "El usuario ya existe");
 
         } else {
             JOptionPane.showMessageDialog(this, "Llena todos los campos correctamente");
+        }
+        
+        if (verificado) {
+            
         }
 
     }

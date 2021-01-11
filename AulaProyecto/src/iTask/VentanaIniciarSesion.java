@@ -9,11 +9,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class VentanaIniciarSesion extends VentanaPadre implements ActionListener
-        , KeyListener{
+public class VentanaIniciarSesion extends VentanaPadre implements ActionListener,
+        KeyListener {
 
     private JButton regresar, iniciarSesion;
     JLabel usua, contrase, inicio, olvi;
@@ -47,7 +48,7 @@ public class VentanaIniciarSesion extends VentanaPadre implements ActionListener
         constrasennia.setEchoChar('*');
         constrasennia.setBounds(180, 200, 300, 25);
         constrasennia.addKeyListener(this);
-        constrasennia.setFont(new Font("Arial", 0, 15));
+        constrasennia.setFont(new Font("Arial", 0, 20));
         add(constrasennia);
 
         usua = new JLabel("Usuario");
@@ -87,6 +88,28 @@ public class VentanaIniciarSesion extends VentanaPadre implements ActionListener
                 }
             });
         }
+        if (e.getActionCommand().equals("Iniciar Sesión")) {
+            accionIniciarSesion();
+        }
+    }
+
+    private void accionIniciarSesion() {
+        String usuario = usuario1.getText();
+        String pass = String.valueOf(constrasennia.getPassword());
+
+        ListaUsuario lista = new ListaUsuario();
+        int posicion = lista.traePosicion(usuario);
+
+        if (posicion == -1) {
+            JOptionPane.showMessageDialog(this, "El usuario no existe");
+        } else 
+            if (pass.equals(lista.obtenerPass(posicion))) {
+                JOptionPane.showMessageDialog(this, "Validado");
+                dispose();
+            } 
+            else {
+                JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
+            }
     }
 
     @Override
@@ -108,4 +131,5 @@ public class VentanaIniciarSesion extends VentanaPadre implements ActionListener
     @Override
     public void keyReleased(KeyEvent ke) {
     }
+
 }
