@@ -106,6 +106,12 @@ public class VentanaIniciarSesion extends VentanaPadre implements ActionListener
             if (pass.equals(lista.obtenerPass(posicion))) {
                 JOptionPane.showMessageDialog(this, "Validado");
                 dispose();
+                EventQueue.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        new Calendario().setVisible(true);
+                    }
+                });
             } 
             else {
                 JOptionPane.showMessageDialog(this, "Contraseña incorrecta");

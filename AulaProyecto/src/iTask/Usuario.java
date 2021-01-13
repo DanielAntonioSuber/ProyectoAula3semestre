@@ -6,18 +6,20 @@
 package iTask;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
  * @author danie
  */
-public class Usuario implements Serializable{
-   
+public class Usuario implements Serializable {
+
     private String nombre;
     private String apellidos;
     private String nombreUsuario;
     private String contrasennia;
-    private String fechaNa; 
+    private String fechaNa;
+    private ArrayList<Tarea> listaTarea = new ArrayList<>();
 
     public String getNombreUsuario() {
         return nombreUsuario;
@@ -26,7 +28,7 @@ public class Usuario implements Serializable{
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
-    
+
     public String getNombre() {
         return nombre;
     }
@@ -59,7 +61,17 @@ public class Usuario implements Serializable{
         this.fechaNa = fechaNa;
     }
 
+    public ArrayList<Tarea> getListaTarea() {
+        return listaTarea;
+    }
+
+    public void setListaTarea(ArrayList<Tarea> listaTarea) {
+        this.listaTarea = listaTarea;
+    }
     
+    public void agregarTarea(Tarea tarea) {
+        listaTarea.add(tarea);
+    }
     
-    
+
 }
